@@ -77,9 +77,7 @@ def run_benchmark(config_path: str | Path, output_dir: str | Path) -> BenchmarkA
     time_limit = float(config["solver"]["time_limit_seconds"])
     solver_seed = int(config["solver"]["random_seed"])
 
-    splits = {
-        name: _instances_from_spec(name, spec) for name, spec in config["splits"].items()
-    }
+    splits = {name: _instances_from_spec(name, spec) for name, spec in config["splits"].items()}
     evaluated: dict[str, tuple[np.ndarray, np.ndarray, list[float], list[SolveResult]]] = {}
     for split_name in ("train", "validation", "test", "ood"):
         evaluated[split_name] = _evaluate_grid(
