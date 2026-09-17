@@ -16,7 +16,7 @@ class PortfolioCostSelector:
     min_samples_leaf: int = 2
     random_state: int = 0
 
-    def fit(self, features: np.ndarray, costs: np.ndarray) -> "PortfolioCostSelector":
+    def fit(self, features: np.ndarray, costs: np.ndarray) -> PortfolioCostSelector:
         if costs.shape != (features.shape[0], len(self.config_names)):
             raise ValueError("cost matrix shape does not match features/configurations")
         self.models_: list[RandomForestRegressor] = []
